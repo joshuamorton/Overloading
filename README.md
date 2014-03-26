@@ -5,21 +5,22 @@
 
 To start, a brief overview of function decorators, since this will delve heavily into them:
 
-    def decorator(function):
-        #create a closure 
-        def newFunc(): #note that newFunc still has access to the function variable
-            print "stuff before"
-            function()
-            print "stuff after"
-        return newFunc
+```python
+def decorator(function):
+    #create a closure 
+    def newFunc(): #note that newFunc still has access to the function variable
+        print "stuff before"
+        function()
+        print "stuff after"
+    return newFunc
 
-    @decorator
-    def ello():
-        print "hello world"
+@decorator
+def ello():
+    print "hello world"
 
-    ello() #->
+ello() #->
 
-    #stuff before
-    #hello world
-    #stuff after
-
+#stuff before
+#hello world
+#stuff after
+```
