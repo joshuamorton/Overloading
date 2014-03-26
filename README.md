@@ -44,7 +44,7 @@ def q(a):return a if a==[]else q([y for y in a[1:]if y<a[0]])+[a[0]]+q([y for y 
 assert q([0,3,7,5,2,9,5,3,4,12,7,99,8,126,2,17,3,24]) == [0, 2, 2, 3, 3, 3, 4, 5, 5, 7, 7, 8, 9, 12, 17, 24, 99, 126]
 assert q([]) == []
 ```
-This certainly worked and but I wanted shorter, so I started looking at other methods of doing the same things and quickly settled on argument unpacking, that is the weird *[alist] syntax where the list is unpacked into component values and submitted to a function that can then deal with them.  Ironically, as I write this up, I noticed that changing "return a if a==[]" to "return []if a==[]" removes a character, (sort of) dropping me below the 100 mark.  Thank goodness I didn't notice that before.  The result of the argument unpacking version is this
+This certainly worked and but I wanted shorter, so I started looking at other methods of doing the same things and quickly settled on argument unpacking, that is the weird *[alist] syntax where the list is unpacked into component values and submitted to a function that can then deal with them.  Ironically, as I write this up, I noticed that changing `return a if a==[]` to `return []if a==[]` removes a character, (sort of) dropping me below the 100 mark.  Thank goodness I didn't notice that before.  The result of the argument unpacking version is this
 
 ```python
 #def q(*l): 
@@ -312,6 +312,9 @@ class TypeCheck:
                             self.functions[function.func_name] = {types2:function}
 
             #shenanigans
+            #this is an important change, instead of the previous method of simply seeing if len(types) was the same as 
+            #len(args), now we see if its the same length as any of the possible functions, an imperfect method but
+            #one that does weed out in some cases
             if len(types) in set(len(x) for x in self.functions[function.func_name].keys()):
                 #print set(len(x) for x in self.functions[function.func_name].keys())
                 #print self.functions
